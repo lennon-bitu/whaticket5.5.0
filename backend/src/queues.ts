@@ -726,7 +726,7 @@ async function handleDispatchCampaign(job) {
       try {
         const publicFolder = path.resolve(__dirname, "..", "public");
         const files = await ShowFileService(campaign.fileListId, campaign.companyId)
-        const folder = path.resolve(publicFolder, "fileList", String(files.id))
+        const folder = path.resolve(publicFolder, `company${campaign.companyId}`, "fileList", String(files.id))
         for (const [index, file] of files.options.entries()) {
           const options = await getMessageOptions(file.path, path.resolve(folder, file.path), file.name);
           await wbot.sendMessage(chatId, { ...options });
